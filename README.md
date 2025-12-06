@@ -1,5 +1,6 @@
 # WGAndroidLib - Simple Android WireGuard Library
 
+[![CI](https://github.com/thebytearray/WGAndroidLib/actions/workflows/ci.yml/badge.svg)](https://github.com/thebytearray/WGAndroidLib/actions/workflows/ci.yml)
 [![](https://jitpack.io/v/thebytearray/WGAndroidLib.svg)](https://jitpack.io/#thebytearray/WGAndroidLib)
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
@@ -7,7 +8,7 @@ A wrapper around the official [wireguard-android](https://github.com/WireGuard/w
 
 **Production ready** with simple APIs and easy abstraction layer.
 
-## 📚 Documentation
+## Documentation
 
 For comprehensive documentation, see the **[Wiki](docs/Home.md)**:
 

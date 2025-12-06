@@ -1,9 +1,20 @@
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.maven)
 }
-val sdkVersion = "1.1.1"
+
+val versionProps = Properties().apply {
+    val versionFile = rootProject.file("version.properties")
+    if (versionFile.exists()) {
+        load(versionFile.inputStream())
+    }
+}
+
+val sdkVersion: String = versionProps.getProperty("VERSION_NAME", "1.0.0")
+val sdkVersionCode: Int = versionProps.getProperty("VERSION_CODE", "1").toInt()
 val jitpackGroupId = "com.github.thebytearray"
 val packageId = "org.thebytearray.wireguard"
 
