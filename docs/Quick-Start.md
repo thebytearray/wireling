@@ -4,38 +4,26 @@ Get your VPN up and running in just a few steps.
 
 ## Step 1: Create Notification Channel
 
-WGAndroidLib uses a foreground service that requires a notification channel. Create it in your `Application` class.
-
-You can use the default channel constants or define your own custom channel.
-
-### Option A: Using Default Constants
+WGAndroidLib uses a foreground service that requires a notification channel. Create it in your `Application` class:
 
 **Kotlin:**
 
 ```kotlin
 import android.app.Application
-import android.app.NotificationChannel
 import android.app.NotificationManager
-import android.os.Build
-import androidx.core.app.NotificationManagerCompat
-import org.thebytearray.wireguard.util.Constants.CHANNEL_ID
-import org.thebytearray.wireguard.util.Constants.CHANNEL_NAME
+import org.thebytearray.wireguard.service.ServiceManager
 
 class MyApplication : Application() {
     override fun onCreate() {
         super.onCreate()
-        createNotificationChannel()
-    }
-
-    private fun createNotificationChannel() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val channel = NotificationChannel(
-                CHANNEL_ID,
-                CHANNEL_NAME,
-                NotificationManager.IMPORTANCE_HIGH
-            )
-            NotificationManagerCompat.from(this).createNotificationChannel(channel)
-        }
+        
+        // Create notification channel with your own ID and name
+        ServiceManager.createNotificationChannel(
+            context = this,
+            channelId = "vpn_channel",
+            channelName = "VPN Service",
+            importance = NotificationManager.IMPORTANCE_HIGH
+        )
     }
 }
 ```
@@ -44,70 +32,23 @@ class MyApplication : Application() {
 
 ```java
 import android.app.Application;
-import android.app.NotificationChannel;
 import android.app.NotificationManager;
-import android.os.Build;
-import static org.thebytearray.wireguard.util.Constants.CHANNEL_ID;
-import static org.thebytearray.wireguard.util.Constants.CHANNEL_NAME;
+import org.thebytearray.wireguard.service.ServiceManager;
 
 public class MyApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        createNotificationChannel();
-    }
-
-    private void createNotificationChannel() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            NotificationChannel channel = new NotificationChannel(
-                CHANNEL_ID,
-                CHANNEL_NAME,
-                NotificationManager.IMPORTANCE_HIGH
-            );
-            NotificationManager manager = getSystemService(NotificationManager.class);
-            manager.createNotificationChannel(channel);
-        }
+        
+        // Create notification channel with your own ID and name
+        ServiceManager.INSTANCE.createNotificationChannel(
+            this,
+            "vpn_channel",
+            "VPN Service",
+            NotificationManager.IMPORTANCE_HIGH
+        );
     }
 }
-```
-
-### Option B: Using Custom Channel
-
-If you want to use your own channel ID and name:
-
-**Kotlin:**
-
-```kotlin
-class MyApplication : Application() {
-    companion object {
-        const val MY_CHANNEL_ID = "my_vpn_channel"
-        const val MY_CHANNEL_NAME = "VPN Service"
-    }
-
-    override fun onCreate() {
-        super.onCreate()
-        createNotificationChannel()
-    }
-
-    private fun createNotificationChannel() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val channel = NotificationChannel(
-                MY_CHANNEL_ID,
-                MY_CHANNEL_NAME,
-                NotificationManager.IMPORTANCE_HIGH
-            )
-            NotificationManagerCompat.from(this).createNotificationChannel(channel)
-        }
-    }
-}
-```
-
-Then in your Activity, set the custom channel before starting VPN:
-
-```kotlin
-// Set custom channel (must match the one created in Application)
-ServiceManager.setNotificationChannel("my_vpn_channel", "VPN Service")
-ServiceManager.setNotificationIcon(R.drawable.ic_vpn)
 ```
 
 Don't forget to register your Application class in `AndroidManifest.xml`:
@@ -122,7 +63,7 @@ Don't forget to register your Application class in `AndroidManifest.xml`:
 
 Before starting the VPN, set the notification icon (usually in your main activity):
 
-### Kotlin
+**Kotlin:**
 
 ```kotlin
 import org.thebytearray.wireguard.service.ServiceManager
@@ -137,7 +78,7 @@ class MainActivity : AppCompatActivity() {
 }
 ```
 
-### Java
+**Java:**
 
 ```java
 import org.thebytearray.wireguard.service.ServiceManager;
@@ -157,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
 
 Request VPN and notification permissions:
 
-### Kotlin
+**Kotlin:**
 
 ```kotlin
 // Check and request VPN permission
@@ -177,7 +118,7 @@ if (!ServiceManager.hasNotificationPermission(this)) {
 }
 ```
 
-### Java
+**Java:**
 
 ```java
 // Check and request VPN permission
@@ -201,7 +142,7 @@ if (!ServiceManager.INSTANCE.hasNotificationPermission(this)) {
 
 Create a configuration and start the VPN:
 
-### Kotlin
+**Kotlin:**
 
 ```kotlin
 import org.thebytearray.wireguard.model.TunnelConfig
@@ -221,7 +162,7 @@ fun connectVpn() {
 }
 ```
 
-### Java
+**Java:**
 
 ```java
 import org.thebytearray.wireguard.model.TunnelConfig;
@@ -244,7 +185,7 @@ private void connectVpn() {
 
 ## Step 5: Disconnect from VPN
 
-### Kotlin
+**Kotlin:**
 
 ```kotlin
 fun disconnectVpn() {
@@ -252,7 +193,7 @@ fun disconnectVpn() {
 }
 ```
 
-### Java
+**Java:**
 
 ```java
 private void disconnectVpn() {
@@ -264,7 +205,7 @@ private void disconnectVpn() {
 
 Here's a complete minimal example:
 
-### Kotlin
+**Kotlin:**
 
 ```kotlin
 class MainActivity : AppCompatActivity() {
@@ -273,7 +214,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         
-        // Initialize
+        // Set notification icon
         ServiceManager.setNotificationIcon(R.drawable.ic_vpn)
         
         // Setup buttons
@@ -314,5 +255,3 @@ class MainActivity : AppCompatActivity() {
 ---
 
 **Next:** [API Reference](API-Reference.md) | [Configuration Details](Configuration.md)
-
-

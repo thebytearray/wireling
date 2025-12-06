@@ -2,6 +2,8 @@ package org.thebytearray.wireguard.service
 
 import android.Manifest.permission.POST_NOTIFICATIONS
 import android.app.Activity
+import android.app.NotificationChannel
+import android.app.NotificationManager
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -12,7 +14,6 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import org.thebytearray.wireguard.model.TunnelConfig
-import org.thebytearray.wireguard.util.Constants
 import org.thebytearray.wireguard.util.Constants.BLOCKED_APPS
 import org.thebytearray.wireguard.util.Constants.STOP_ACTION
 import org.thebytearray.wireguard.util.Constants.TUNNEL_CONFIG
@@ -31,10 +32,7 @@ object ServiceManager {
     var notificationIconResId: Int = 0
         private set
 
-    var notificationChannelId: String = Constants.CHANNEL_ID
-        private set
-
-    var notificationChannelName: String = Constants.CHANNEL_NAME
+    var notificationChannelId: String = ""
         private set
 
     /**
@@ -47,16 +45,27 @@ object ServiceManager {
     }
 
     /**
-     * Sets the notification channel ID and name.
-     * Call this before starting the VPN if you want to use a custom channel.
-     * Make sure to create the notification channel with the same ID in your Application class.
+     * Creates the notification channel for the VPN service.
+     * Call this once in your Application class or before starting the VPN.
      *
+     * @param context The application context
      * @param channelId The notification channel ID
-     * @param channelName The notification channel name (display name)
+     * @param channelName The notification channel display name
+     * @param importance The notification importance level (default: NotificationManager.IMPORTANCE_HIGH)
      */
-    fun setNotificationChannel(channelId: String, channelName: String) {
+    fun createNotificationChannel(
+        context: Context,
+        channelId: String,
+        channelName: String,
+        importance: Int = NotificationManager.IMPORTANCE_HIGH
+    ) {
         notificationChannelId = channelId
-        notificationChannelName = channelName
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val channel = NotificationChannel(channelId, channelName, importance)
+            val notificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            notificationManager.createNotificationChannel(channel)
+            Log.d(TAG, "Notification channel created: $channelId")
+        }
     }
 
     /**
@@ -131,11 +140,12 @@ object ServiceManager {
      * @param context The application context
      * @param config The VPN tunnel configuration
      * @param blockedApps List of blocked apps (optional)
-     * @throws IllegalStateException if notification icon is not set
+     * @throws IllegalStateException if notification icon or channel is not set
      * @throws IllegalArgumentException if configuration is invalid
      */
     fun startVpnTunnel(context: Context, config: TunnelConfig, blockedApps: List<String>?) {
-        require(notificationIconResId != 0) { "Notification icon must be set before starting VPN" }
+        require(notificationIconResId != 0) { "Notification icon must be set before starting VPN. Call setNotificationIcon() first." }
+        require(notificationChannelId.isNotEmpty()) { "Notification channel must be created before starting VPN. Call createNotificationChannel() first." }
 
         try {
             val startIntent = Intent(context, TunnelService::class.java).apply {

@@ -13,8 +13,6 @@ object Constants {
     /**
      * Notification related constants
      */
-    const val CHANNEL_ID = "WIREGUARD_CHANNEL"
-    const val CHANNEL_NAME = "WireGuard Background Service"
     const val FOREGROUND_ID = 1
     const val NOTIFICATION_TITLE = "WireGuard Connected"
     const val NOTIFICATION_TEXT = "Connected to WireGuard Tunnel"
