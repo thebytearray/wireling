@@ -77,7 +77,7 @@ dependencies {
     implementation("androidx.core:core-ktx:1.17.0")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.10.2")
     implementation("com.wireguard.android:tunnel:1.0.20250531")
-    implementation("com.google.code.gson:gson:2.13.1")
+    implementation("com.google.code.gson:gson:2.13.2")
     implementation("androidx.activity:activity-ktx:1.12.1")
     implementation("androidx.appcompat:appcompat:1.7.1")
 }
