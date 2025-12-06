@@ -14,7 +14,6 @@ val versionProps = Properties().apply {
 }
 
 val sdkVersion: String = versionProps.getProperty("VERSION_NAME", "1.0.0")
-val sdkVersionCode: Int = versionProps.getProperty("VERSION_CODE", "1").toInt()
 val jitpackGroupId = "com.github.thebytearray"
 val packageId = "org.thebytearray.wireguard"
 

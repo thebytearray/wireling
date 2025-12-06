@@ -42,16 +42,13 @@ jobs:
         id: current_version
         run: |
           VERSION_NAME=$(grep "VERSION_NAME" version.properties | cut -d'=' -f2)
-          VERSION_CODE=$(grep "VERSION_CODE" version.properties | cut -d'=' -f2)
           echo "version_name=$VERSION_NAME" >> $GITHUB_OUTPUT
-          echo "version_code=$VERSION_CODE" >> $GITHUB_OUTPUT
-          echo "Current version: $VERSION_NAME (code: $VERSION_CODE)"
+          echo "Current version: $VERSION_NAME"
 
       - name: Calculate new version
         id: new_version
         run: |
           CURRENT_VERSION="${{ steps.current_version.outputs.version_name }}"
-          CURRENT_CODE="${{ steps.current_version.outputs.version_code }}"
           BUMP_TYPE="${{ github.event.inputs.version_bump }}"
           
           IFS='.' read -ra VERSION_PARTS <<< "$CURRENT_VERSION"
@@ -75,16 +72,13 @@ jobs:
           esac
           
           NEW_VERSION="$MAJOR.$MINOR.$PATCH"
-          NEW_CODE=$((CURRENT_CODE + 1))
           
           echo "new_version=$NEW_VERSION" >> $GITHUB_OUTPUT
-          echo "new_code=$NEW_CODE" >> $GITHUB_OUTPUT
-          echo "New version: $NEW_VERSION (code: $NEW_CODE)"
+          echo "New version: $NEW_VERSION"
 
       - name: Update version.properties
         run: |
           echo "VERSION_NAME=${{ steps.new_version.outputs.new_version }}" > version.properties
-          echo "VERSION_CODE=${{ steps.new_version.outputs.new_code }}" >> version.properties
           cat version.properties
 
       - name: Build AAR
@@ -107,7 +101,6 @@ jobs:
             COMMITS="- Version bump and maintenance updates"
           fi
           
-          # Write changelog to file to handle multiline
           echo "## What's Changed" > changelog.md
           echo "" >> changelog.md
           echo "$COMMITS" >> changelog.md
@@ -144,7 +137,4 @@ jobs:
           echo "## Release Summary" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "- **Version**: v${{ steps.new_version.outputs.new_version }}" >> $GITHUB_STEP_SUMMARY
-          echo "- **Version Code**: ${{ steps.new_version.outputs.new_code }}" >> $GITHUB_STEP_SUMMARY
           echo "- **Bump Type**: ${{ github.event.inputs.version_bump }}" >> $GITHUB_STEP_SUMMARY
-
-

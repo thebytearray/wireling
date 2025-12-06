@@ -22,11 +22,7 @@ This project uses semantic versioning. Version information is stored in `version
 
 ```properties
 VERSION_NAME=1.2.0
-VERSION_CODE=4
 ```
-
-- **VERSION_NAME**: Semantic version (MAJOR.MINOR.PATCH)
-- **VERSION_CODE**: Incremental integer for Android
 
 Do not manually edit `version.properties` unless necessary. Version bumps are handled automatically by the release workflow.
 
