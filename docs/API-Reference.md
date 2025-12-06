@@ -13,6 +13,8 @@ The main entry point for all VPN operations. This is a singleton object.
 | Property | Type | Description |
 |----------|------|-------------|
 | `notificationIconResId` | `Int` | The resource ID of the notification icon (read-only) |
+| `notificationChannelId` | `String` | The notification channel ID (read-only, default: `"WIREGUARD_CHANNEL"`) |
+| `notificationChannelName` | `String` | The notification channel name (read-only, default: `"WireGuard Background Service"`) |
 
 ### Methods
 
@@ -31,6 +33,37 @@ Sets the notification icon for the VPN service. **Must be called before starting
 **Example:**
 
 ```kotlin
+ServiceManager.setNotificationIcon(R.drawable.ic_vpn)
+```
+
+---
+
+#### setNotificationChannel
+
+```kotlin
+fun setNotificationChannel(channelId: String, channelName: String)
+```
+
+Sets a custom notification channel ID and name. Call this before starting the VPN if you want to use your own notification channel. You must create the notification channel with the same ID in your Application class.
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `channelId` | `String` | The notification channel ID |
+| `channelName` | `String` | The notification channel display name |
+
+**Example:**
+
+```kotlin
+// In your Application class, create the channel with your custom ID
+val channel = NotificationChannel(
+    "MY_VPN_CHANNEL",
+    "My VPN Service",
+    NotificationManager.IMPORTANCE_HIGH
+)
+notificationManager.createNotificationChannel(channel)
+
+// Then in your Activity, set the channel before starting VPN
+ServiceManager.setNotificationChannel("MY_VPN_CHANNEL", "My VPN Service")
 ServiceManager.setNotificationIcon(R.drawable.ic_vpn)
 ```
 

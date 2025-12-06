@@ -12,6 +12,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import org.thebytearray.wireguard.model.TunnelConfig
+import org.thebytearray.wireguard.util.Constants
 import org.thebytearray.wireguard.util.Constants.BLOCKED_APPS
 import org.thebytearray.wireguard.util.Constants.STOP_ACTION
 import org.thebytearray.wireguard.util.Constants.TUNNEL_CONFIG
@@ -30,6 +31,12 @@ object ServiceManager {
     var notificationIconResId: Int = 0
         private set
 
+    var notificationChannelId: String = Constants.CHANNEL_ID
+        private set
+
+    var notificationChannelName: String = Constants.CHANNEL_NAME
+        private set
+
     /**
      * Sets the notification icon resource ID.
      *
@@ -37,6 +44,19 @@ object ServiceManager {
      */
     fun setNotificationIcon(resId: Int) {
         notificationIconResId = resId
+    }
+
+    /**
+     * Sets the notification channel ID and name.
+     * Call this before starting the VPN if you want to use a custom channel.
+     * Make sure to create the notification channel with the same ID in your Application class.
+     *
+     * @param channelId The notification channel ID
+     * @param channelName The notification channel name (display name)
+     */
+    fun setNotificationChannel(channelId: String, channelName: String) {
+        notificationChannelId = channelId
+        notificationChannelName = channelName
     }
 
     /**

@@ -4,9 +4,13 @@ Get your VPN up and running in just a few steps.
 
 ## Step 1: Create Notification Channel
 
-WGAndroidLib uses a foreground service that requires a notification channel. Create it in your `Application` class:
+WGAndroidLib uses a foreground service that requires a notification channel. Create it in your `Application` class.
 
-### Kotlin
+You can use the default channel constants or define your own custom channel.
+
+### Option A: Using Default Constants
+
+**Kotlin:**
 
 ```kotlin
 import android.app.Application
@@ -36,7 +40,7 @@ class MyApplication : Application() {
 }
 ```
 
-### Java
+**Java:**
 
 ```java
 import android.app.Application;
@@ -65,6 +69,45 @@ public class MyApplication extends Application {
         }
     }
 }
+```
+
+### Option B: Using Custom Channel
+
+If you want to use your own channel ID and name:
+
+**Kotlin:**
+
+```kotlin
+class MyApplication : Application() {
+    companion object {
+        const val MY_CHANNEL_ID = "my_vpn_channel"
+        const val MY_CHANNEL_NAME = "VPN Service"
+    }
+
+    override fun onCreate() {
+        super.onCreate()
+        createNotificationChannel()
+    }
+
+    private fun createNotificationChannel() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val channel = NotificationChannel(
+                MY_CHANNEL_ID,
+                MY_CHANNEL_NAME,
+                NotificationManager.IMPORTANCE_HIGH
+            )
+            NotificationManagerCompat.from(this).createNotificationChannel(channel)
+        }
+    }
+}
+```
+
+Then in your Activity, set the custom channel before starting VPN:
+
+```kotlin
+// Set custom channel (must match the one created in Application)
+ServiceManager.setNotificationChannel("my_vpn_channel", "VPN Service")
+ServiceManager.setNotificationIcon(R.drawable.ic_vpn)
 ```
 
 Don't forget to register your Application class in `AndroidManifest.xml`:

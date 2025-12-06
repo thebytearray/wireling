@@ -99,7 +99,7 @@ dependencies {
 
 ### 1. Create Notification Channel
 
-Configure your Application class to create a notification channel:
+Configure your Application class to create a notification channel. You can use the default constants or your own custom channel ID:
 
 **Kotlin:**
 
@@ -111,12 +111,13 @@ class TunnelApplication : Application() {
     }
 
     private fun createNotificationChannel() {
-        //Imports are not shown here you need to import the CHANNEL_ID and CHANNEL_NAME
+        // Use Constants.CHANNEL_ID and Constants.CHANNEL_NAME for defaults
+        // Or use your own custom channel ID and name
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val manager = NotificationManagerCompat.from(this)
             val channel = NotificationChannel(
-                CHANNEL_ID,
-                CHANNEL_NAME,
+                CHANNEL_ID,  // or "my_custom_channel_id"
+                CHANNEL_NAME,  // or "My VPN Service"
                 NotificationManager.IMPORTANCE_HIGH
             )
             manager.createNotificationChannel(channel)
@@ -137,11 +138,12 @@ public class TunnelApplication extends Application {
 
     private void createNotificationChannel() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            //Imports are not shown here you need to import the CHANNEL_ID and CHANNEL_NAME
+            // Use Constants.CHANNEL_ID and Constants.CHANNEL_NAME for defaults
+            // Or use your own custom channel ID and name
             NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
             NotificationChannel channel = new NotificationChannel(
-                CHANNEL_ID,
-                CHANNEL_NAME,
+                CHANNEL_ID,  // or "my_custom_channel_id"
+                CHANNEL_NAME,  // or "My VPN Service"
                 NotificationManager.IMPORTANCE_HIGH
             );
             manager.createNotificationChannel(channel);
@@ -149,6 +151,8 @@ public class TunnelApplication extends Application {
     }
 }
 ```
+
+If using a custom channel, call `ServiceManager.setNotificationChannel("my_custom_channel_id", "My VPN Service")` before starting the VPN.
 ### 2. Configure AndroidManifest.xml
 
 Add permissions and service declarations:

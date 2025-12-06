@@ -12,7 +12,11 @@ import org.thebytearray.wireguard.util.Constants
  * @developer Tamim Hossain
  * @mail contact@thebytearray.org
  */
-class NotificationService(private val context: Context, private val notificationIconResId: Int) : ServiceListener {
+class NotificationService(
+    private val context: Context,
+    private val notificationIconResId: Int,
+    private val channelId: String = ServiceManager.notificationChannelId
+) : ServiceListener {
 
     private val notificationManager =
         context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
@@ -21,7 +25,7 @@ class NotificationService(private val context: Context, private val notification
         title: String = Constants.NOTIFICATION_TITLE,
         contentText: String = Constants.NOTIFICATION_TEXT
     ): NotificationCompat.Builder {
-        return NotificationCompat.Builder(context, Constants.CHANNEL_ID)
+        return NotificationCompat.Builder(context, channelId)
             .setSmallIcon(notificationIconResId)
             .setOngoing(true)
             .setAutoCancel(false)
