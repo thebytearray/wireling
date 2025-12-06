@@ -37,9 +37,11 @@ Add the dependency to your app-level `build.gradle`:
 
 ```groovy
 dependencies {
-    implementation 'com.github.thebytearray:WGAndroidLib:1.1.3'
+    implementation 'com.github.thebytearray:WGAndroidLib:<latest-version>'
 }
 ```
+
+Check the [JitPack badge](https://jitpack.io/#thebytearray/WGAndroidLib) or [releases page](https://github.com/thebytearray/WGAndroidLib/releases) for the latest version.
 
 ### Kotlin DSL
 
@@ -59,7 +61,7 @@ Add the dependency to your app-level `build.gradle.kts`:
 
 ```kotlin
 dependencies {
-    implementation("com.github.thebytearray:WGAndroidLib:1.1.3")
+    implementation("com.github.thebytearray:WGAndroidLib:<latest-version>")
 }
 ```
 
