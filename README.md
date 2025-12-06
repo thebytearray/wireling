@@ -128,7 +128,7 @@ public class TunnelApplication extends Application {
         super.onCreate();
         
         // Create notification channel with your own ID, name, and importance
-        ServiceManager.INSTANCE.createNotificationChannel(
+        ServiceManager.createNotificationChannel(
             this,
             "vpn_channel",
             "VPN Service",
@@ -224,19 +224,19 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         // Set notification icon -> for the service :
-        ServiceManager.INSTANCE.setNotificationIcon(R.drawable.ic_vpn);
+        ServiceManager.setNotificationIcon(R.drawable.ic_vpn);
         
         // Check and request permissions if not granted
-        if (!ServiceManager.INSTANCE.hasVpnPermission(this)) {
-            ServiceManager.INSTANCE.requestVpnPermission(this, isGranted -> {
+        if (!ServiceManager.hasVpnPermission(this)) {
+            ServiceManager.requestVpnPermission(this, isGranted -> {
                 if (isGranted) {
                     // VPN permission granted -> you can start now safely
                 }
             });
         }
         
-        if (!ServiceManager.INSTANCE.hasNotificationPermission(this)) {
-            ServiceManager.INSTANCE.requestNotificationPermission(this, isGranted -> {
+        if (!ServiceManager.hasNotificationPermission(this)) {
+            ServiceManager.requestNotificationPermission(this, isGranted -> {
                 if (isGranted) {
                     // Notification permission granted
                 }
@@ -256,11 +256,11 @@ public class MainActivity extends AppCompatActivity {
             .build();
             
         // Start VPN with configuration
-        ServiceManager.INSTANCE.startVpnTunnel(this, config, null);
+        ServiceManager.startVpnTunnel(this, config, null);
     }
     
     private void stopVpn() {
-        ServiceManager.INSTANCE.stopVpnTunnel(this);
+        ServiceManager.stopVpnTunnel(this);
     }
 }
 ```

@@ -41,7 +41,7 @@ public class MyApplication extends Application {
         super.onCreate();
         
         // Create notification channel with your own ID and name
-        ServiceManager.INSTANCE.createNotificationChannel(
+        ServiceManager.createNotificationChannel(
             this,
             "vpn_channel",
             "VPN Service",
@@ -89,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         
         // Set notification icon (required before starting VPN)
-        ServiceManager.INSTANCE.setNotificationIcon(R.drawable.ic_vpn);
+        ServiceManager.setNotificationIcon(R.drawable.ic_vpn);
     }
 }
 ```
@@ -122,8 +122,8 @@ if (!ServiceManager.hasNotificationPermission(this)) {
 
 ```java
 // Check and request VPN permission
-if (!ServiceManager.INSTANCE.hasVpnPermission(this)) {
-    ServiceManager.INSTANCE.requestVpnPermission(this, granted -> {
+if (!ServiceManager.hasVpnPermission(this)) {
+    ServiceManager.requestVpnPermission(this, granted -> {
         if (granted) {
             // VPN permission granted, ready to connect
         }
@@ -131,8 +131,8 @@ if (!ServiceManager.INSTANCE.hasVpnPermission(this)) {
 }
 
 // Check and request notification permission (Android 13+)
-if (!ServiceManager.INSTANCE.hasNotificationPermission(this)) {
-    ServiceManager.INSTANCE.requestNotificationPermission(this, granted -> {
+if (!ServiceManager.hasNotificationPermission(this)) {
+    ServiceManager.requestNotificationPermission(this, granted -> {
         // Notification permission is optional but recommended
     });
 }
@@ -179,7 +179,7 @@ private void connectVpn() {
         .setEndpoint("vpn.example.com:51820")
         .build();
 
-    ServiceManager.INSTANCE.startVpnTunnel(this, config, null);
+    ServiceManager.startVpnTunnel(this, config, null);
 }
 ```
 
@@ -197,7 +197,7 @@ fun disconnectVpn() {
 
 ```java
 private void disconnectVpn() {
-    ServiceManager.INSTANCE.stopVpnTunnel(this);
+    ServiceManager.stopVpnTunnel(this);
 }
 ```
 

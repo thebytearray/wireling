@@ -29,9 +29,11 @@ object ServiceManager {
     private const val VPN_PERMISSION_REQUEST_CODE = 1
     private const val NOTIFICATION_PERMISSION_REQUEST_CODE = 2
 
+    @JvmStatic
     var notificationIconResId: Int = 0
         private set
 
+    @JvmStatic
     var notificationChannelId: String = ""
         private set
 
@@ -40,6 +42,7 @@ object ServiceManager {
      *
      * @param resId The resource ID of the notification icon
      */
+    @JvmStatic
     fun setNotificationIcon(resId: Int) {
         notificationIconResId = resId
     }
@@ -53,6 +56,8 @@ object ServiceManager {
      * @param channelName The notification channel display name
      * @param importance The notification importance level (default: NotificationManager.IMPORTANCE_HIGH)
      */
+    @JvmStatic
+    @JvmOverloads
     fun createNotificationChannel(
         context: Context,
         channelId: String,
@@ -74,6 +79,7 @@ object ServiceManager {
      * @param context The application context
      * @return true if VPN permission is granted, false otherwise
      */
+    @JvmStatic
     fun hasVpnPermission(context: Context): Boolean {
         return ContextCompat.checkSelfPermission(
             context, android.Manifest.permission.BIND_VPN_SERVICE
@@ -86,6 +92,7 @@ object ServiceManager {
      * @param context The application context
      * @return true if notification permission is granted, false otherwise
      */
+    @JvmStatic
     fun hasNotificationPermission(context: Context): Boolean {
         return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             ContextCompat.checkSelfPermission(
@@ -102,6 +109,7 @@ object ServiceManager {
      * @param activity The activity to request permission from
      * @param callback The callback to be called when permission is granted or denied
      */
+    @JvmStatic
     fun requestVpnPermission(
         activity: Activity, callback: (Boolean) -> Unit
     ) {
@@ -119,6 +127,7 @@ object ServiceManager {
      * @param activity The activity to request permission from
      * @param callback The callback to be called when permission is granted or denied
      */
+    @JvmStatic
     fun requestNotificationPermission(
         activity: AppCompatActivity, callback: (Boolean) -> Unit
     ) {
@@ -143,6 +152,7 @@ object ServiceManager {
      * @throws IllegalStateException if notification icon or channel is not set
      * @throws IllegalArgumentException if configuration is invalid
      */
+    @JvmStatic
     fun startVpnTunnel(context: Context, config: TunnelConfig, blockedApps: List<String>?) {
         require(notificationIconResId != 0) { "Notification icon must be set before starting VPN. Call setNotificationIcon() first." }
         require(notificationChannelId.isNotEmpty()) { "Notification channel must be created before starting VPN. Call createNotificationChannel() first." }
@@ -166,6 +176,7 @@ object ServiceManager {
      *
      * @param context The application context
      */
+    @JvmStatic
     fun stopVpnTunnel(context: Context) {
         try {
             val stopIntent = Intent(context, TunnelService::class.java).apply {
