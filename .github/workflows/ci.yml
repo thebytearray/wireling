@@ -43,3 +43,4 @@ jobs:
           path: wireguard/build/outputs/aar/wireguard-release.aar
           retention-days: 7
 
+
