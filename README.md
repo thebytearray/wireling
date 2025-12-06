@@ -266,8 +266,11 @@ public class MainActivity extends AppCompatActivity {
 #### The library itself handles some of the most common errors, specifically related to configuration validation. If you want to handle some yourself if you have then it's recommended to follow the option 2 and import the library as a module and use it.
 
 #### License
-#### This Project is licensed under the Apache 2.0 - See LICENSE for more details.
-#### Acknowledgement
-#### [wireguard-android](https://github.com/WireGuard/wireguard-android)
-#### WireGuard® is a registered trademark of Jason A. Donenfeld 
+#### This project is licensed under the GNU General Public License v3.0 (GPLv3) - See [LICENSE](LICENSE) for more details.
+
+#### Acknowledgements
+- [wireguard-android](https://github.com/WireGuard/wireguard-android)
+
+#### Trademark Notice
+"WireGuard" and the "WireGuard" logo are registered trademarks of Jason A. Donenfeld.
 
