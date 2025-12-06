@@ -1,26 +1,40 @@
-# WGAndroidLib - Simple Android Wireguard Library
+# WGAndroidLib - Simple Android WireGuard Library
 
-#### This library is a wrapper around the main wireguard android project intended to simplify the implementation of wireguard in android apps without handling complex functions.
+[![](https://jitpack.io/v/thebytearray/WGAndroidLib.svg)](https://jitpack.io/#thebytearray/WGAndroidLib)
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
-#### It's production ready and provides simple and easy abstraction layer and functions to work with wireguard.
+A wrapper around the official [wireguard-android](https://github.com/WireGuard/wireguard-android) project, designed to simplify VPN implementation in Android apps without dealing with complex low-level functions.
 
-#### Features :
+**Production ready** with simple APIs and easy abstraction layer.
 
-* Provides Dev Friendly Apis to start/stop/monitor connection.
-* State management through broadcast receiver.
-* Built in notification system.
-* Validation logic for wireguard configurations.
-* Easy permission handling for VPNService and Notification.
+## 📚 Documentation
 
-#### Installation and Api Documentation
+For comprehensive documentation, see the **[Wiki](docs/Home.md)**:
 
-#### Installation Documentation
+| Guide | Description |
+|-------|-------------|
+| [Installation](docs/Installation.md) | Add the library to your project |
+| [Quick Start](docs/Quick-Start.md) | Get up and running in minutes |
+| [API Reference](docs/API-Reference.md) | Complete API documentation |
+| [Configuration](docs/Configuration.md) | TunnelConfig and validation details |
+| [State Management](docs/State-Management.md) | Handle VPN states and broadcasts |
+| [Troubleshooting](docs/Troubleshooting.md) | Common issues and solutions |
 
-#### Option 1 : Using jitpack builds
+## Features
 
-#### Add the jitpack repository and dependency to your app settings.gradle
+- **Developer-Friendly APIs** — Simple methods to start, stop, and monitor VPN connections
+- **State Management** — Built-in broadcast receiver for real-time connection state updates
+- **Notification System** — Automatic foreground service notifications with speed statistics
+- **Configuration Validation** — Built-in validation for WireGuard configurations
+- **Permission Handling** — Easy-to-use permission request APIs for VPN and notifications
 
-#### Groovy
+## Quick Installation
+
+### Option 1: JitPack (Recommended)
+
+Add JitPack repository and the dependency:
+
+**Groovy:**
 
 ```groovy
 allprojects {
@@ -35,7 +49,7 @@ dependencies {
 }
 ```
 
-#### Kotlin DSL
+**Kotlin DSL:**
 
 ```kotlin
 repositories {
@@ -48,27 +62,23 @@ dependencies {
 }
 ```
 
-#### And then sync the project and follow the api usage guide.
+Sync the project and follow the setup guide below.
 
-#### Option 2 : Importing and using as a sub-module
+### Option 2: Git Submodule
 
-#### This step is for advanced devs who want to use the library as sub module and later maybe want to do some changes to tailor to their needs .
+For advanced users who want to customize the library:
 
-#### 1.Clone the repository.
+**1. Clone the repository:**
 
 ```
 git clone https://github.com/thebytearray/WGAndroidLib.git
 ```
 
-#### 2.In Android Studio :
+**2. In Android Studio:** Go to **File → New → Import Module**, select the `wireguard` directory.
 
-#### Go to File > New > Import Module , and then select the
+**3. Add module dependency:**
 
-`wireguard` module from the cloned project and then add it to your project.
-
-#### 3.Add the module dependency.
-
-#### Groovy (App Level)
+**Groovy:**
 
 ```groovy
 dependencies {
@@ -76,7 +86,7 @@ dependencies {
 }
 ```
 
-#### Kotlin DSL (App Level)
+**Kotlin DSL:**
 
 ```kotlin
 dependencies {
@@ -84,15 +94,13 @@ dependencies {
 }
 ```
 
-#### Api Documentation
+## Quick Setup
 
-#### Setup
+### 1. Create Notification Channel
 
-#### 1.Configure your Application class (host app) to create a notification channel that will be used for the service of wireguard.
+Configure your Application class to create a notification channel:
 
-#### Examples
-
-#### Kotlin
+**Kotlin:**
 
 ```kotlin
 class TunnelApplication : Application() {
@@ -116,7 +124,8 @@ class TunnelApplication : Application() {
 }
 ```
 
-#### Java
+**Java:**
+
 ```java
 public class TunnelApplication extends Application {
     @Override
@@ -139,7 +148,9 @@ public class TunnelApplication extends Application {
     }
 }
 ```
-#### 2.Configure permissions and service declaration in AndroidManifest.xml
+### 2. Configure AndroidManifest.xml
+
+Add permissions and service declarations:
 ```xml
 <!-- Permissions -->
 <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE" />
@@ -165,8 +176,9 @@ public class TunnelApplication extends Application {
 </service>
 ```
 
-#### 3.Configure and initialize the library
-#### Kotlin
+### 3. Initialize and Use
+
+**Kotlin:**
 ```kotlin
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -214,7 +226,8 @@ class MainActivity : AppCompatActivity() {
 }
 ```
 
-#### Java
+**Java:**
+
 ```java
 public class MainActivity extends AppCompatActivity {
     @Override
@@ -262,15 +275,25 @@ public class MainActivity extends AppCompatActivity {
     }
 }
 ```
-#### Error handling
-#### The library itself handles some of the most common errors, specifically related to configuration validation. If you want to handle some yourself if you have then it's recommended to follow the option 2 and import the library as a module and use it.
+## Error Handling
 
-#### License
-#### This project is licensed under the GNU General Public License v3.0 (GPLv3) - See [LICENSE](LICENSE) for more details.
+The library handles common errors automatically, particularly configuration validation. For custom error handling, import the library as a module (Option 2).
 
-#### Acknowledgements
-- [wireguard-android](https://github.com/WireGuard/wireguard-android)
+See the [Troubleshooting Guide](docs/Troubleshooting.md) for common issues and solutions.
 
-#### Trademark Notice
+## License
+
+This project is licensed under the **GNU General Public License v3.0 (GPLv3)** - See [LICENSE](LICENSE) for details.
+
+## Acknowledgements
+
+- [wireguard-android](https://github.com/WireGuard/wireguard-android) — Official WireGuard Android implementation
+
+## Trademark Notice
+
 "WireGuard" and the "WireGuard" logo are registered trademarks of Jason A. Donenfeld.
+
+---
+
+*Maintained by [TheByteArray](https://thebytearray.org)*
 
