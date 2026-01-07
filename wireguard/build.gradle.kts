@@ -1,3 +1,4 @@
+import org.gradle.kotlin.dsl.coreLibraryDesugaring
 import java.util.Properties
 
 plugins {
@@ -40,7 +41,9 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
+        isCoreLibraryDesugaringEnabled = true
     }
+
     kotlin {
         compilerOptions {
             jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17)
@@ -76,8 +79,9 @@ publishing {
 dependencies {
     implementation("androidx.core:core-ktx:1.17.0")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.10.2")
-    implementation("com.wireguard.android:tunnel:1.0.20250531")
+    implementation("com.wireguard.android:tunnel:1.0.20260102")
     implementation("com.google.code.gson:gson:2.13.2")
-    implementation("androidx.activity:activity-ktx:1.12.1")
+    implementation("androidx.activity:activity-ktx:1.12.2")
     implementation("androidx.appcompat:appcompat:1.7.1")
+    coreLibraryDesugaring ("com.android.tools:desugar_jdk_libs:2.1.5")
 }
