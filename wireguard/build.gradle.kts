@@ -81,7 +81,7 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.10.2")
     implementation("com.wireguard.android:tunnel:1.0.20260102")
     implementation("com.google.code.gson:gson:2.13.2")
-    implementation("androidx.activity:activity-ktx:1.12.2")
+    implementation("androidx.activity:activity-ktx:1.12.3")
     implementation("androidx.appcompat:appcompat:1.7.1")
     coreLibraryDesugaring ("com.android.tools:desugar_jdk_libs:2.1.5")
 }
