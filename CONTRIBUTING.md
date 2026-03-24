@@ -1,86 +1,41 @@
-# Contributing to WGAndroidLib
+# Contributing to WireLing
 
-Thank you for your interest in contributing to WGAndroidLib.
+Thank you for your interest in contributing to WireLing.
 
-## Development Setup
+## Development setup
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/thebytearray/WGAndroidLib.git
+   git clone https://github.com/thebytearray/WireLing.git
    ```
 
-2. Open the project in Android Studio
+2. Open the project in Android Studio.
 
 3. Sync Gradle and build:
    ```bash
-   ./gradlew :wireguard:assembleRelease
+   ./gradlew :wireling:assembleRelease :app:assembleDebug
    ```
+
+## Project layout
+
+- **`wireling`** — Android library (`org.thebytearray.wireling.sdk`), published via JitPack.
+- **`app`** — Sample application (`org.thebytearray.wireling.sample`).
 
 ## Versioning
 
-This project uses semantic versioning. Version information is stored in `version.properties`:
+Version metadata lives in `version.properties` at the repository root. Bump versions as part of a deliberate release, not drive-by edits.
 
-```properties
-VERSION_NAME=1.2.0
-```
+## Commit guidelines
 
-Do not manually edit `version.properties` unless necessary. Version bumps are handled automatically by the release workflow.
+Use clear commit messages. Suggested prefixes:
 
-## Release Process
-
-Releases are automated via GitHub Actions. To create a new release:
-
-1. Navigate to **Actions** tab in the GitHub repository
-2. Select **Release** workflow
-3. Click **Run workflow**
-4. Choose the version bump type:
-   - **patch**: Bug fixes (1.2.0 -> 1.2.1)
-   - **minor**: New features (1.2.0 -> 1.3.0)
-   - **major**: Breaking changes (1.2.0 -> 2.0.0)
-5. Click **Run workflow**
-
-The workflow will:
-- Bump the version in `version.properties`
-- Build the AAR
-- Generate changelog from commits since last release
-- Create a GitHub release with the AAR attached
-- Tag the release
-
-## Commit Guidelines
-
-Use clear, descriptive commit messages. Recommended prefixes:
-
-- `feat:` New features
-- `fix:` Bug fixes
-- `docs:` Documentation changes
-- `refactor:` Code refactoring
-- `chore:` Maintenance tasks
-- `test:` Test additions or modifications
-
-Examples:
-```
-feat: add DNS configuration support
-fix: resolve connection timeout issue
-docs: update API reference for TunnelConfig
-```
-
-## Pull Requests
-
-1. Fork the repository
-2. Create a feature branch from `master`
-3. Make your changes
-4. Ensure the build passes: `./gradlew :wireguard:assembleRelease`
-5. Submit a pull request
-
-## Code Style
-
-- Follow Kotlin coding conventions
-- Use meaningful variable and function names
-- Add KDoc comments for public APIs
-- Keep functions focused and concise
+- `feat:` — New features
+- `fix:` — Bug fixes
+- `docs:` — Documentation
+- `refactor:` — Refactors without behavior change
+- `chore:` — Maintenance
+- `test:` — Tests
 
 ## License
 
-By contributing, you agree that your contributions will be licensed under the GPLv3 license.
-
-
+By contributing, you agree that your contributions will be licensed under the same license as the project (GNU General Public License v3.0).

@@ -1,51 +1,8 @@
 # Installation
 
-This guide covers all methods to integrate WGAndroidLib into your Android project.
+## JitPack (recommended)
 
-## Option 1: JitPack (Recommended)
-
-The easiest way to add WGAndroidLib to your project is through JitPack.
-
-### Groovy DSL
-
-Add JitPack repository to your root `build.gradle` or `settings.gradle`:
-
-```groovy
-// settings.gradle
-dependencyResolutionManagement {
-    repositories {
-        google()
-        mavenCentral()
-        maven { url 'https://jitpack.io' }
-    }
-}
-```
-
-Or in your root `build.gradle`:
-
-```groovy
-allprojects {
-    repositories {
-        google()
-        mavenCentral()
-        maven { url 'https://jitpack.io' }
-    }
-}
-```
-
-Add the dependency to your app-level `build.gradle`:
-
-```groovy
-dependencies {
-    implementation 'com.github.thebytearray:WGAndroidLib:<latest-version>'
-}
-```
-
-Check the [JitPack badge](https://jitpack.io/#thebytearray/WGAndroidLib) or [releases page](https://github.com/thebytearray/WGAndroidLib/releases) for the latest version.
-
-### Kotlin DSL
-
-Add JitPack repository to your `settings.gradle.kts`:
+**`settings.gradle.kts`**
 
 ```kotlin
 dependencyResolutionManagement {
@@ -57,102 +14,48 @@ dependencyResolutionManagement {
 }
 ```
 
-Add the dependency to your app-level `build.gradle.kts`:
+**App `build.gradle.kts`**
 
 ```kotlin
 dependencies {
-    implementation("com.github.thebytearray:WGAndroidLib:<latest-version>")
+    implementation("com.github.thebytearray:WireLing:<version>")
 }
 ```
 
-## Option 2: Git Submodule
+Use the [JitPack page](https://jitpack.io/#thebytearray/WireLing) for `<version>` (tag, branch, or commit).
 
-For developers who want to customize the library or contribute to development.
+## Local module
 
-### Step 1: Clone the Repository
-
-```bash
-git clone https://github.com/thebytearray/WGAndroidLib.git
-```
-
-### Step 2: Import as Module
-
-In Android Studio:
-1. Go to **File → New → Import Module**
-2. Select the `wireguard` directory from the cloned repository
-3. Follow the import wizard
-
-### Step 3: Add Module Dependency
-
-**Groovy DSL:**
-
-```groovy
-dependencies {
-    implementation project(':wireguard')
-}
-```
-
-**Kotlin DSL:**
+From a checkout of this repo:
 
 ```kotlin
+// settings.gradle.kts
+include(":app", ":wireling")
+
+// app/build.gradle.kts
 dependencies {
-    implementation(project(":wireguard"))
+    implementation(project(":wireling"))
 }
 ```
 
-## Required Configuration
+## Merged manifest (library)
 
-After adding the dependency, you must configure your `AndroidManifest.xml`.
+The **`wireling`** AAR merges:
 
-### Permissions
+- Permissions: `INTERNET`, `ACCESS_NETWORK_STATE`, `FOREGROUND_SERVICE`, `FOREGROUND_SERVICE_SPECIAL_USE`, `POST_NOTIFICATIONS`
+- Service: `org.thebytearray.wireling.sdk.platform.TunnelService` (not exported, `specialUse` + property `vpn`)
 
-Add the following permissions to your `AndroidManifest.xml`:
+The **WireGuard Go backend** `VpnService` comes from the **wireguard-android** dependency manifest; do not duplicate it in your app.
 
-```xml
-<!-- Required Permissions -->
-<uses-permission android:name="android.permission.INTERNET" />
-<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-<uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
-<uses-permission android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE" />
+## App responsibilities
 
-<!-- For Android 13+ (API 33+) -->
-<uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
-```
+Your application still needs:
 
-### Service Declarations
-
-Add these service declarations inside the `<application>` tag:
-
-```xml
-<!-- WireGuard Tunnel Service -->
-<service
-    android:name="org.thebytearray.wireguard.service.TunnelService"
-    android:exported="true"
-    android:foregroundServiceType="specialUse"
-    android:permission="android.permission.FOREGROUND_SERVICE" />
-
-<!-- VPN Backend Service -->
-<service
-    android:name="com.wireguard.android.backend.GoBackend$VpnService"
-    android:exported="true"
-    android:permission="android.permission.BIND_VPN_SERVICE">
-    <intent-filter>
-        <action android:name="android.net.VpnService" />
-    </intent-filter>
-</service>
-```
-
-## Sync and Build
-
-After configuration, sync your Gradle files:
-
-```bash
-./gradlew sync
-```
-
-Or use **File → Sync Project with Gradle Files** in Android Studio.
+1. **`VpnService` permission flow** — use `WireLingVpn` helpers and `VpnService.prepare`.
+2. **Notification channel** — `WireLingVpn.createNotificationChannel(...)` in `Application.onCreate` (or before connect).
+3. **Notification icon** — `WireLingVpn.setNotificationIcon(R.drawable....)` before `startVpnTunnel`.
+4. **Optional**: `POST_NOTIFICATIONS` on API 33+ — `WireLingVpn.registerPostNotificationsLauncher` / `launchPostNotificationsRequest`.
 
 ---
 
-**Next:** [Quick Start Guide](Quick-Start.md)
-
+**Next:** [Quick Start](Quick-Start.md)

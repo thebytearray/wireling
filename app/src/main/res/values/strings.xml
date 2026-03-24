@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">WireLing</string>
+    <string name="notification_channel_name">WireLing VPN</string>
+</resources>

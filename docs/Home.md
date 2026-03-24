@@ -1,46 +1,33 @@
-# WGAndroidLib Documentation
+# WireLing documentation
 
-Welcome to the official documentation for **WGAndroidLib** — a simplified Android WireGuard library that provides easy-to-use APIs for implementing VPN functionality in your Android applications.
-
-## Overview
-
-WGAndroidLib is a wrapper around the official [wireguard-android](https://github.com/WireGuard/wireguard-android) project, designed to simplify VPN implementation without dealing with complex low-level functions.
+WireLing is a simplified Android WireGuard integration built on [wireguard-android](https://github.com/WireGuard/wireguard-android). The public API is centered on **`org.thebytearray.wireling.sdk.WireLingVpn`** and **`org.thebytearray.wireling.sdk.domain.TunnelConfig`**.
 
 ## Features
 
-- **Developer-Friendly APIs** — Simple methods to start, stop, and monitor VPN connections
-- **State Management** — Built-in broadcast receiver for real-time connection state updates
-- **Notification System** — Automatic foreground service notifications with speed statistics
-- **Configuration Validation** — Built-in validation for WireGuard configurations
-- **Permission Handling** — Easy-to-use permission request APIs for VPN and notifications
+- Start/stop VPN via a foreground **`TunnelService`**
+- Notification channel + icon setup helpers
+- VPN and POST_NOTIFICATIONS helpers using Activity Result APIs
+- Stats **`BroadcastIntent`** (`WireLingConstants`) for UI updates
+- **`TunnelConfig`** validation (IPv4 CIDR, Base64 keys, **IPv4:port** endpoint)
 
-## Quick Links
+## Quick links
 
-| Documentation | Description |
-|---------------|-------------|
-| [Installation](Installation.md) | How to add the library to your project |
-| [Quick Start](Quick-Start.md) | Get up and running in minutes |
-| [API Reference](API-Reference.md) | Complete API documentation |
-| [Configuration](Configuration.md) | TunnelConfig and validation details |
-| [State Management](State-Management.md) | Handling VPN states and broadcasts |
-| [Troubleshooting](Troubleshooting.md) | Common issues and solutions |
+| Page | Description |
+|------|-------------|
+| [Installation](Installation.md) | Repositories, dependency, manifest |
+| [Quick Start](Quick-Start.md) | Minimal integration steps |
+| [API Reference](API-Reference.md) | `WireLingVpn` methods |
+| [Configuration](Configuration.md) | Builder fields and limits |
+| [State Management](State-Management.md) | Receiving stats in the UI |
+| [Troubleshooting](Troubleshooting.md) | Typical failures |
+| [Architecture](Architecture.md) | `wireling` module layers |
 
 ## Requirements
 
-- **Minimum SDK**: 21 (Android 5.0 Lollipop)
-- **Target SDK**: 34 (Android 14)
-- **Kotlin**: 1.9+
-- **Gradle**: 8.0+
+- **minSdk**: 24 (sample app); align with your product needs
+- **Kotlin** / **Gradle**: see root `libs.versions.toml`
+- **JitPack**: `com.github.thebytearray:WireLing`
 
 ## License
 
-This project is licensed under the **GNU General Public License v3.0 (GPLv3)**.
-
-## Trademark Notice
-
-"WireGuard" and the "WireGuard" logo are registered trademarks of Jason A. Donenfeld.
-
----
-
-*Maintained by [TheByteArray](https://thebytearray.org) • [GitHub Repository](https://github.com/thebytearray/WGAndroidLib)*
-
+GNU General Public License v3.0 — see [LICENSE](../LICENSE).
