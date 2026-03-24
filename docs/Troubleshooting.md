@@ -26,10 +26,6 @@ Ensure you run **`VpnService.prepare`** flow and only call **`startVpnTunnel`** 
 
 Declare the WireGuard VPN service **once**. Rely on the **wireguard-android** AAR manifest; avoid duplicating `com.wireguard.android.backend.GoBackend$VpnService` in your library manifest.
 
-## Git working tree vs history
-
-If you copied **`.git`** from the old **WGAndroidLib** layout, Git may show the entire **WireLing** tree as added/changed. Create a new commit (or merge) to record the current structure; no rebase of individual file patches is required.
-
 ---
 
 **Back:** [Home](Home.md)

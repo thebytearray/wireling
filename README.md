@@ -3,7 +3,7 @@
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 [![](https://jitpack.io/v/thebytearray/WireLing.svg)](https://jitpack.io/#thebytearray/WireLing)
 
-WireLing is an Android library that wraps [wireguard-android](https://github.com/WireGuard/wireguard-android) with a small public API (`WireLingVpn`, `TunnelConfig`, foreground notifications, and stats broadcasts). Kotlin sources for the library live under **`org.thebytearray.wireling.sdk`**.
+WireLing is an Android library that wraps [wireguard-android](https://github.com/WireGuard/wireguard-android) with a small public API (`WireLingVpn`, `TunnelConfig`, foreground notifications, and stats broadcasts). Kotlin sources live under **`org.thebytearray.wireling.sdk`**. The project was **renamed and improved** from **WGAndroidLib**; depend on **`com.github.thebytearray:WireLing`** (JitPack) instead of the old artifact.
 
 The **`app`** module is a sample you can run to enter a WireGuard-style tunnel (interface, keys, peer, endpoint) and connect.
 
@@ -63,7 +63,3 @@ Replace `<tag-or-commit>` with a [JitPack](https://jitpack.io/#thebytearray/Wire
 WireLing is licensed under the **GNU General Public License v3.0**. See [LICENSE](LICENSE).
 
 “WireGuard” and the WireGuard logo are registered trademarks of Jason A. Donenfeld.
-
-## Git history note
-
-If this tree was checked out with history carried over from **WGAndroidLib**, your working copy may not match the last commit until you record the new layout (e.g. `git add -A` and a merge or snapshot commit). That preserves prior commits without rebasing the same patches by hand.
