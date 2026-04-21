@@ -1,28 +1,34 @@
 # Installation
 
-## JitPack (recommended)
+## Maven Central
 
-**`settings.gradle.kts`**
+Use **`org.thebytearray.wireguard:WireLing`** with `google()` and `mavenCentral()`. Pick a version from [GitHub Releases](https://github.com/thebytearray/wireling/releases) or [Maven Central](https://central.sonatype.com/artifact/org.thebytearray.wireguard/WireLing).
+
+**Kotlin DSL (`settings.gradle.kts` / module `build.gradle.kts`):**
 
 ```kotlin
-dependencyResolutionManagement {
-    repositories {
-        google()
-        mavenCentral()
-        maven("https://jitpack.io")
-    }
+repositories {
+    google()
+    mavenCentral()
 }
-```
 
-**App `build.gradle.kts`**
-
-```kotlin
 dependencies {
-    implementation("com.github.thebytearray:WireLing:<version>")
+    implementation("org.thebytearray.wireguard:WireLing:<version>")
 }
 ```
 
-Use the [JitPack page](https://jitpack.io/#thebytearray/WireLing) for `<version>` (tag, branch, or commit).
+**Groovy:**
+
+```groovy
+repositories {
+    google()
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.thebytearray.wireguard:WireLing:<version>'
+}
+```
 
 ## Local module
 
@@ -51,10 +57,10 @@ The **WireGuard Go backend** `VpnService` comes from the **wireguard-android** d
 
 Your application still needs:
 
-1. **`VpnService` permission flow** — use `WireLingVpn` helpers and `VpnService.prepare`.
-2. **Notification channel** — `WireLingVpn.createNotificationChannel(...)` in `Application.onCreate` (or before connect).
-3. **Notification icon** — `WireLingVpn.setNotificationIcon(R.drawable....)` before `startVpnTunnel`.
-4. **Optional**: `POST_NOTIFICATIONS` on API 33+ — `WireLingVpn.registerPostNotificationsLauncher` / `launchPostNotificationsRequest`.
+1. **`VpnService` permission flow**: use `WireLingVpn` helpers and `VpnService.prepare`.
+2. **Notification channel**: `WireLingVpn.createNotificationChannel(...)` in `Application.onCreate` (or before connect).
+3. **Notification icon**: `WireLingVpn.setNotificationIcon(R.drawable....)` before `startVpnTunnel`.
+4. **Optional**: `POST_NOTIFICATIONS` on API 33+: `WireLingVpn.registerPostNotificationsLauncher` / `launchPostNotificationsRequest`.
 
 ---
 

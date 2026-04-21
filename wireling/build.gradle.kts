@@ -1,11 +1,10 @@
-import org.gradle.api.publish.maven.MavenPublication
 import org.gradle.kotlin.dsl.coreLibraryDesugaring
 import org.jetbrains.kotlin.gradle.dsl.ExplicitApiMode
 import java.util.Properties
 
 plugins {
     alias(libs.plugins.android.library)
-    id("maven-publish")
+    alias(libs.plugins.maven.publish)
 }
 
 val versionProps = Properties().apply {
@@ -16,6 +15,16 @@ val versionProps = Properties().apply {
 }
 
 val sdkVersion: String = versionProps.getProperty("VERSION_NAME", "1.0.0")
+val mavenGroupId = "org.thebytearray.wireguard"
+val mavenArtifactId = "WireLing"
+
+val signingConfigured =
+    !(project.findProperty("signingInMemoryKey") as String?).isNullOrBlank() ||
+        !System.getenv("ORG_GRADLE_PROJECT_signingInMemoryKey").isNullOrBlank() ||
+        (
+            !(project.findProperty("signing.keyId") as String?).isNullOrBlank() &&
+                !(project.findProperty("signing.secretKeyRingFile") as String?).isNullOrBlank()
+            )
 
 android {
     namespace = "org.thebytearray.wireling.sdk"
@@ -27,6 +36,7 @@ android {
 
     defaultConfig {
         minSdk = 24
+        version = sdkVersion
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
     }
@@ -56,10 +66,41 @@ android {
             useLegacyPackaging = true
         }
     }
-    publishing {
-        singleVariant("release") {
-            withSourcesJar()
-            withJavadocJar()
+}
+
+mavenPublishing {
+    coordinates(mavenGroupId, mavenArtifactId, sdkVersion)
+    publishToMavenCentral(automaticRelease = true)
+    if (signingConfigured) {
+        signAllPublications()
+    }
+
+    pom {
+        name.set("WireLing")
+        description.set("Android WireGuard library with a simple API for VPN tunnels.")
+        inceptionYear.set("2024")
+        url.set("https://github.com/thebytearray/wireling")
+
+        licenses {
+            license {
+                name.set("GNU General Public License v3.0")
+                url.set("https://www.gnu.org/licenses/gpl-3.0.html")
+                distribution.set("repo")
+            }
+        }
+
+        developers {
+            developer {
+                id.set("thebytearray")
+                name.set("TheByteArray")
+                url.set("https://github.com/thebytearray/")
+            }
+        }
+
+        scm {
+            url.set("https://github.com/thebytearray/wireling/")
+            connection.set("scm:git:git://github.com/thebytearray/wireling.git")
+            developerConnection.set("scm:git:ssh://git@github.com/thebytearray/wireling.git")
         }
     }
 }
@@ -74,17 +115,4 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
-}
-
-afterEvaluate {
-    publishing {
-        publications {
-            create<MavenPublication>("release") {
-                groupId = "com.github.thebytearray"
-                artifactId = "WireLing"
-                version = sdkVersion
-                from(components["release"])
-            }
-        }
-    }
 }
