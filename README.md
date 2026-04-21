@@ -1,11 +1,11 @@
 # WireLing
 
 [![CI](https://github.com/thebytearray/wireling/actions/workflows/ci.yml/badge.svg)](https://github.com/thebytearray/wireling/actions/workflows/ci.yml)
-[![Maven Central](https://img.shields.io/maven-central/v/org.thebytearray.wireguard/WireLing)](https://central.sonatype.com/artifact/org.thebytearray.wireguard/WireLing)
+[![Maven Central](https://img.shields.io/maven-central/v/org.thebytearray.wireling/WireLing)](https://central.sonatype.com/artifact/org.thebytearray.wireling/WireLing)
 [![GitHub release](https://img.shields.io/github/v/release/thebytearray/wireling)](https://github.com/thebytearray/wireling/releases)
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
-WireLing is an Android library that wraps [wireguard-android](https://github.com/WireGuard/wireguard-android) with a small public API (`WireLingVpn`, `TunnelConfig`, foreground notifications, and stats broadcasts). Kotlin sources live under **`org.thebytearray.wireling`**. This project continues **WGAndroidLib** under the WireLing name and coordinates.
+WireLing is an Android library for WireGuard-style VPN tunnels with a small public API: `WireLingVpn`, `TunnelConfig`, foreground notifications, and stats broadcasts. Kotlin sources and the Android `namespace` use **`org.thebytearray.wireling`**. Maven Central artifact: **`org.thebytearray.wireling:WireLing`**.
 
 The **`app`** module is a sample you can run to enter a WireGuard-style tunnel (interface, keys, peer, endpoint) and connect.
 
@@ -24,7 +24,7 @@ The **`app`** module is a sample you can run to enter a WireGuard-style tunnel (
 
 ## Quick install (Maven Central)
 
-Dependency: **`org.thebytearray.wireguard:WireLing`**. Use `google()` and `mavenCentral()`. Versions: [Maven Central](https://central.sonatype.com/artifact/org.thebytearray.wireguard/WireLing) and [GitHub Releases](https://github.com/thebytearray/wireling/releases).
+Dependency: **`org.thebytearray.wireling:WireLing`**. Use `google()` and `mavenCentral()`. Versions: [Maven Central](https://central.sonatype.com/artifact/org.thebytearray.wireling/WireLing) and [GitHub Releases](https://github.com/thebytearray/wireling/releases).
 
 **Kotlin DSL:**
 
@@ -35,7 +35,7 @@ repositories {
 }
 
 dependencies {
-    implementation("org.thebytearray.wireguard:WireLing:<version>")
+    implementation("org.thebytearray.wireling:WireLing:<version>")
 }
 ```
 
@@ -48,7 +48,7 @@ repositories {
 }
 
 dependencies {
-    implementation 'org.thebytearray.wireguard:WireLing:<version>'
+    implementation 'org.thebytearray.wireling:WireLing:<version>'
 }
 ```
 
@@ -64,7 +64,7 @@ dependencies {
 | Module | Android `namespace` | Kotlin packages |
 |--------|---------------------|-----------------|
 | `wireling` | `org.thebytearray.wireling` | `org.thebytearray.wireling` (and internal subpackages) |
-| `app` | `org.thebytearray.wireling` | Sample: `org.thebytearray.wireling.sample` |
+| `app` | `org.thebytearray.wireling.sample` | Sample: `org.thebytearray.wireling.sample` (and `org.thebytearray.wireling.ui.theme`) |
 
 ## License
 

@@ -15,7 +15,7 @@ val versionProps = Properties().apply {
 }
 
 val sdkVersion: String = versionProps.getProperty("VERSION_NAME", "1.0.0")
-val mavenGroupId = "org.thebytearray.wireguard"
+val mavenGroupId = "org.thebytearray.wireling"
 val mavenArtifactId = "WireLing"
 
 val signingConfigured =

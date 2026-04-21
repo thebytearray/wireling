@@ -2,7 +2,7 @@
 
 ## Maven Central
 
-Use **`org.thebytearray.wireguard:WireLing`** with `google()` and `mavenCentral()`. Pick a version from [GitHub Releases](https://github.com/thebytearray/wireling/releases) or [Maven Central](https://central.sonatype.com/artifact/org.thebytearray.wireguard/WireLing).
+Use **`org.thebytearray.wireling:WireLing`** with `google()` and `mavenCentral()`. Pick a version from [GitHub Releases](https://github.com/thebytearray/wireling/releases) or [Maven Central](https://central.sonatype.com/artifact/org.thebytearray.wireling/WireLing).
 
 **Kotlin DSL (`settings.gradle.kts` / module `build.gradle.kts`):**
 
@@ -13,7 +13,7 @@ repositories {
 }
 
 dependencies {
-    implementation("org.thebytearray.wireguard:WireLing:<version>")
+    implementation("org.thebytearray.wireling:WireLing:<version>")
 }
 ```
 
@@ -26,7 +26,7 @@ repositories {
 }
 
 dependencies {
-    implementation 'org.thebytearray.wireguard:WireLing:<version>'
+    implementation 'org.thebytearray.wireling:WireLing:<version>'
 }
 ```
 

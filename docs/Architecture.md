@@ -14,7 +14,7 @@ Under **`org.thebytearray.wireling`**:
 - **`domain`** — `TunnelConfig`, `TunnelState`, `VpnTunnelEngine` (interfaces and models).
 - **`data`** — WireGuard engine adapter, persistence helpers, tunnel wiring.
 - **`platform`** — Android `TunnelService`, intents, notifications, Android-specific glue.
-- **Root `sdk` package** — **`WireLingVpn`**, **`WireLingConstants`** (public façade).
+- **Library root** — **`WireLingVpn`**, **`WireLingConstants`** (public façade).
 
 Internal types stay in subpackages; consumers should depend on the public API above.
 
@@ -22,10 +22,10 @@ Internal types stay in subpackages; consumers should depend on the public API ab
 
 AGP requires a unique **`namespace`** per module. This project uses:
 
-- **`org.thebytearray.wireling.library`** for the **`wireling`** module.
-- **`org.thebytearray.wireling.app`** for the **`app`** module.
+- **`org.thebytearray.wireling`** for the **`wireling`** module.
+- **`org.thebytearray.wireling.sample`** for the **`app`** module.
 
-The library **`namespace`** and Kotlin packages share the root **`org.thebytearray.wireling`** (the sample app uses **`org.thebytearray.wireling.sample`**).
+The library **`namespace`** and Kotlin packages share the root **`org.thebytearray.wireling`** (the sample app also uses **`org.thebytearray.wireling.sample`** and **`org.thebytearray.wireling.ui.theme`**).
 
 ## Dependencies
 

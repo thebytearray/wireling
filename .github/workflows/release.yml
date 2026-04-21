@@ -169,4 +169,4 @@ jobs:
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "- **Version**: v${{ steps.new_version.outputs.new_version }}" >> $GITHUB_STEP_SUMMARY
           echo "- **Bump Type**: ${{ github.event.inputs.version_bump }}" >> $GITHUB_STEP_SUMMARY
-          echo "- **Maven Central**: org.thebytearray.wireguard:WireLing:${{ steps.new_version.outputs.new_version }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Maven Central**: org.thebytearray.wireling:WireLing:${{ steps.new_version.outputs.new_version }}" >> $GITHUB_STEP_SUMMARY

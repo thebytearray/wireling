@@ -1,8 +1,8 @@
 # WireLing documentation
 
-WireLing is a simplified Android WireGuard integration built on [wireguard-android](https://github.com/WireGuard/wireguard-android). The public API is centered on **`org.thebytearray.wireling.WireLingVpn`** and **`org.thebytearray.wireling.domain.TunnelConfig`**.
+WireLing is a simplified Android WireGuard integration. The public API is centered on **`org.thebytearray.wireling.WireLingVpn`** and **`org.thebytearray.wireling.domain.TunnelConfig`**.
 
-This library continues **WGAndroidLib** under the WireLing name: use this repository, **`org.thebytearray.wireguard:WireLing`** on Maven Central, and **`org.thebytearray.wireling`** packages.
+Source: [thebytearray/wireling](https://github.com/thebytearray/wireling) on GitHub. Dependency: **`org.thebytearray.wireling:WireLing`** on Maven Central. Kotlin packages are under **`org.thebytearray.wireling`**.
 
 ## Features
 
@@ -28,7 +28,7 @@ This library continues **WGAndroidLib** under the WireLing name: use this reposi
 
 - **minSdk**: 24 (sample app); align with your product needs
 - **Kotlin** / **Gradle**: see root `libs.versions.toml`
-- **Maven Central**: `org.thebytearray.wireguard:WireLing`
+- **Maven Central**: `org.thebytearray.wireling:WireLing`
 
 ## License
 
