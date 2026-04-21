@@ -20,14 +20,27 @@
  along with WireLing. If not, see <https://www.gnu.org/licenses/>.
 */
 
-package org.thebytearray.wireling.sdk.domain
+package org.thebytearray.wireling.platform
 
-/** High-level VPN tunnel lifecycle state surfaced to the app (e.g. via stats broadcasts). */
-public enum class TunnelState {
-    /** Tunnel is up and passing traffic. */
-    CONNECTED,
-    /** Tunnel is down. */
-    DISCONNECTED,
-    /** Tunnel is being established. */
-    CONNECTING,
+private const val THRESHOLD = 1000L
+private const val DIVISOR = 1024.0
+
+internal fun Long.toSpeedString(): String = this.toTrafficString() + "/s"
+
+internal fun Long.toTrafficString(): String {
+    val units = arrayOf("B", "KB", "MB", "GB", "TB", "PB")
+    var size = this.toDouble()
+    var unitIndex = 0
+    while (size >= THRESHOLD && unitIndex < units.size - 1) {
+        size /= DIVISOR
+        unitIndex++
+    }
+    return String.format("%.1f %s", size, units[unitIndex])
+}
+
+internal fun Long.formatDuration(): String {
+    val hours = this / 3600
+    val minutes = (this % 3600) / 60
+    val seconds = this % 60
+    return String.format("%02d:%02d:%02d", hours, minutes, seconds)
 }

@@ -10,7 +10,7 @@
 
     <application>
         <service
-            android:name="org.thebytearray.wireling.sdk.platform.TunnelService"
+            android:name="org.thebytearray.wireling.platform.TunnelService"
             android:exported="false"
             android:foregroundServiceType="specialUse"
             tools:targetApi="34">

@@ -56,8 +56,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import org.thebytearray.wireling.sdk.WireLingConstants
-import org.thebytearray.wireling.sdk.WireLingVpn
+import org.thebytearray.wireling.WireLingConstants
+import org.thebytearray.wireling.WireLingVpn
 import org.thebytearray.wireling.ui.theme.WireLingTheme
 
 class MainActivity : ComponentActivity() {

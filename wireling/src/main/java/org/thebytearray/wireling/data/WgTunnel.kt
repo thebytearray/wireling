@@ -20,27 +20,16 @@
  along with WireLing. If not, see <https://www.gnu.org/licenses/>.
 */
 
-package org.thebytearray.wireling.sdk.platform
+package org.thebytearray.wireling.data
 
-private const val THRESHOLD = 1000L
-private const val DIVISOR = 1024.0
+import com.wireguard.android.backend.Tunnel
 
-internal fun Long.toSpeedString(): String = this.toTrafficString() + "/s"
+internal class WgTunnel : Tunnel {
+    override fun getName(): String = WIRELING_SESSION_NAME
 
-internal fun Long.toTrafficString(): String {
-    val units = arrayOf("B", "KB", "MB", "GB", "TB", "PB")
-    var size = this.toDouble()
-    var unitIndex = 0
-    while (size >= THRESHOLD && unitIndex < units.size - 1) {
-        size /= DIVISOR
-        unitIndex++
+    override fun onStateChange(newState: Tunnel.State) {}
+
+    internal companion object {
+        const val WIRELING_SESSION_NAME: String = "WireLing Tunnel"
     }
-    return String.format("%.1f %s", size, units[unitIndex])
-}
-
-internal fun Long.formatDuration(): String {
-    val hours = this / 3600
-    val minutes = (this % 3600) / 60
-    val seconds = this % 60
-    return String.format("%02d:%02d:%02d", hours, minutes, seconds)
 }

@@ -20,7 +20,7 @@
  along with WireLing. If not, see <https://www.gnu.org/licenses/>.
 */
 
-package org.thebytearray.wireling.sdk.platform
+package org.thebytearray.wireling.platform
 
 import android.app.Service
 import android.content.Intent
@@ -36,17 +36,17 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import org.thebytearray.wireling.sdk.WireLingVpn
-import org.thebytearray.wireling.sdk.data.PersistentProps
-import org.thebytearray.wireling.sdk.data.WireGuardVpnTunnelEngine
-import org.thebytearray.wireling.sdk.domain.TunnelConfig
-import org.thebytearray.wireling.sdk.domain.TunnelState
-import org.thebytearray.wireling.sdk.domain.VpnTunnelEngine
+import org.thebytearray.wireling.WireLingVpn
+import org.thebytearray.wireling.data.PersistentProps
+import org.thebytearray.wireling.data.WireGuardVpnTunnelEngine
+import org.thebytearray.wireling.domain.TunnelConfig
+import org.thebytearray.wireling.domain.TunnelState
+import org.thebytearray.wireling.domain.VpnTunnelEngine
 import kotlin.coroutines.CoroutineContext
 
 /**
  * Foreground [Service] that owns the WireGuard tunnel, notifications, and stats broadcasts.
- * Started via [org.thebytearray.wireling.sdk.WireLingVpn.startVpnTunnel]; not intended for direct use.
+ * Started via [org.thebytearray.wireling.WireLingVpn.startVpnTunnel]; not intended for direct use.
  */
 public class TunnelService : Service(), CoroutineScope {
     private val tag = "WireLingTunnelService"

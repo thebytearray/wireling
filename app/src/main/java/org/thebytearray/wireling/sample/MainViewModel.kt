@@ -31,11 +31,11 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import org.thebytearray.wireling.BuildConfig
-import org.thebytearray.wireling.sdk.WireLingConstants
-import org.thebytearray.wireling.sdk.WireLingVpn
-import org.thebytearray.wireling.sdk.domain.TunnelConfig
-import org.thebytearray.wireling.sdk.domain.TunnelState
+import org.thebytearray.wireling.sample.BuildConfig
+import org.thebytearray.wireling.WireLingConstants
+import org.thebytearray.wireling.WireLingVpn
+import org.thebytearray.wireling.domain.TunnelConfig
+import org.thebytearray.wireling.domain.TunnelState
 
 data class WireLingUiState(
     val connectionLabel: String = TunnelState.DISCONNECTED.name,

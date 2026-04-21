@@ -27,7 +27,7 @@ val signingConfigured =
             )
 
 android {
-    namespace = "org.thebytearray.wireling.sdk"
+    namespace = "org.thebytearray.wireling"
     compileSdk {
         version = release(36) {
             minorApiLevel = 1

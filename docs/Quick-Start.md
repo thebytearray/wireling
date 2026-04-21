@@ -3,7 +3,7 @@
 ## 1. Notification channel (Application)
 
 ```kotlin
-import org.thebytearray.wireling.sdk.WireLingVpn
+import org.thebytearray.wireling.WireLingVpn
 
 class MyApplication : Application() {
     override fun onCreate() {
@@ -47,7 +47,7 @@ WireLingVpn.launchPostNotificationsRequest(notifLauncher)
 ## 5. Connect
 
 ```kotlin
-import org.thebytearray.wireling.sdk.domain.TunnelConfig
+import org.thebytearray.wireling.domain.TunnelConfig
 
 val config = TunnelConfig.Builder()
     .setInterfaceAddress("10.0.0.2/24")

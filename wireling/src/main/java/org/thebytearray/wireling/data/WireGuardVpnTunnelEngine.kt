@@ -20,14 +20,14 @@
  along with WireLing. If not, see <https://www.gnu.org/licenses/>.
 */
 
-package org.thebytearray.wireling.sdk.data
+package org.thebytearray.wireling.data
 
 import com.wireguard.android.backend.Backend
 import com.wireguard.android.backend.Tunnel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import org.thebytearray.wireling.sdk.domain.TunnelConfig
-import org.thebytearray.wireling.sdk.domain.VpnTunnelEngine
+import org.thebytearray.wireling.domain.TunnelConfig
+import org.thebytearray.wireling.domain.VpnTunnelEngine
 
 internal class WireGuardVpnTunnelEngine(
     private val backend: Backend,

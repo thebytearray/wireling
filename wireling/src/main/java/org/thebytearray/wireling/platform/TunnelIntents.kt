@@ -20,7 +20,7 @@
  along with WireLing. If not, see <https://www.gnu.org/licenses/>.
 */
 
-package org.thebytearray.wireling.sdk.platform
+package org.thebytearray.wireling.platform
 
 internal object TunnelIntents {
     const val STOP_ACTION: String = "org.thebytearray.wireling.action.STOP"

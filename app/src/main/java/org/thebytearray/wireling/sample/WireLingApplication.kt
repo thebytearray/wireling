@@ -24,8 +24,8 @@ package org.thebytearray.wireling.sample
 
 import android.app.Application
 import android.app.NotificationManager
-import org.thebytearray.wireling.R
-import org.thebytearray.wireling.sdk.WireLingVpn
+import org.thebytearray.wireling.sample.R
+import org.thebytearray.wireling.WireLingVpn
 
 class WireLingApplication : Application() {
     override fun onCreate() {

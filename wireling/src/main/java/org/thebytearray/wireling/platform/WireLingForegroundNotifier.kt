@@ -20,15 +20,15 @@
  along with WireLing. If not, see <https://www.gnu.org/licenses/>.
 */
 
-package org.thebytearray.wireling.sdk.platform
+package org.thebytearray.wireling.platform
 
 import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import androidx.core.app.NotificationCompat
-import org.thebytearray.wireling.sdk.WireLingConstants
-import org.thebytearray.wireling.sdk.WireLingVpn
+import org.thebytearray.wireling.WireLingConstants
+import org.thebytearray.wireling.WireLingVpn
 
 internal class WireLingForegroundNotifier(
     private val context: Context,

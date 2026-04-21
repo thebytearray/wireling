@@ -1,6 +1,6 @@
 # API reference — `WireLingVpn`
 
-Package: **`org.thebytearray.wireling.sdk`**
+Package: **`org.thebytearray.wireling`**
 
 Object: **`WireLingVpn`** — static entry points for notifications, permissions, and tunnel control.
 

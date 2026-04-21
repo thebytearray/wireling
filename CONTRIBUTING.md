@@ -18,7 +18,7 @@ Thank you for your interest in contributing to WireLing.
 
 ## Project layout
 
-- **`wireling`**: Android library (`org.thebytearray.wireling.sdk`), published to Maven Central.
+- **`wireling`**: Android library (`org.thebytearray.wireling`), published to Maven Central.
 - **`app`**: Sample application (`org.thebytearray.wireling.sample`).
 
 ## Versioning

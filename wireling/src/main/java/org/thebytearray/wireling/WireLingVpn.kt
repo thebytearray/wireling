@@ -20,7 +20,7 @@
  along with WireLing. If not, see <https://www.gnu.org/licenses/>.
 */
 
-package org.thebytearray.wireling.sdk
+package org.thebytearray.wireling
 
 import android.Manifest
 import android.app.Activity
@@ -36,9 +36,9 @@ import androidx.activity.ComponentActivity
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
-import org.thebytearray.wireling.sdk.domain.TunnelConfig
-import org.thebytearray.wireling.sdk.platform.TunnelIntents
-import org.thebytearray.wireling.sdk.platform.TunnelService
+import org.thebytearray.wireling.domain.TunnelConfig
+import org.thebytearray.wireling.platform.TunnelIntents
+import org.thebytearray.wireling.platform.TunnelService
 
 /**
  * Application-facing entry point for WireLing: notification setup, runtime permissions,

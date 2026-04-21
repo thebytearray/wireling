@@ -20,7 +20,7 @@
  along with WireLing. If not, see <https://www.gnu.org/licenses/>.
 */
 
-package org.thebytearray.wireling.sdk.data
+package org.thebytearray.wireling.data
 
 import com.wireguard.android.backend.GoBackend
 import com.wireguard.android.backend.Tunnel

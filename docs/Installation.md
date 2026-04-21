@@ -49,7 +49,7 @@ dependencies {
 The **`wireling`** AAR merges:
 
 - Permissions: `INTERNET`, `ACCESS_NETWORK_STATE`, `FOREGROUND_SERVICE`, `FOREGROUND_SERVICE_SPECIAL_USE`, `POST_NOTIFICATIONS`
-- Service: `org.thebytearray.wireling.sdk.platform.TunnelService` (not exported, `specialUse` + property `vpn`)
+- Service: `org.thebytearray.wireling.platform.TunnelService` (not exported, `specialUse` + property `vpn`)
 
 The **WireGuard Go backend** `VpnService` comes from the **wireguard-android** dependency manifest; do not duplicate it in your app.
 

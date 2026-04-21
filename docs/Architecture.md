@@ -9,7 +9,7 @@
 
 ## `wireling` layers (Kotlin)
 
-Under **`org.thebytearray.wireling.sdk`**:
+Under **`org.thebytearray.wireling`**:
 
 - **`domain`** — `TunnelConfig`, `TunnelState`, `VpnTunnelEngine` (interfaces and models).
 - **`data`** — WireGuard engine adapter, persistence helpers, tunnel wiring.
@@ -25,7 +25,7 @@ AGP requires a unique **`namespace`** per module. This project uses:
 - **`org.thebytearray.wireling.library`** for the **`wireling`** module.
 - **`org.thebytearray.wireling.app`** for the **`app`** module.
 
-Kotlin package names (**`org.thebytearray.wireling.sdk`**, **`org.thebytearray.wireling.sample`**) are independent of the manifest namespace string.
+The library **`namespace`** and Kotlin packages share the root **`org.thebytearray.wireling`** (the sample app uses **`org.thebytearray.wireling.sample`**).
 
 ## Dependencies
 

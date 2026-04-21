@@ -2,7 +2,7 @@
 
 While the tunnel runs, the library can emit stats on a **`Broadcast`** action defined in **`WireLingConstants`**.
 
-## Constants (`org.thebytearray.wireling.sdk.WireLingConstants`)
+## Constants (`org.thebytearray.wireling.WireLingConstants`)
 
 | Constant | Role |
 |----------|------|
@@ -19,7 +19,7 @@ Use **`ContextCompat.registerReceiver`** so exported flags are set correctly on 
 
 ```kotlin
 import androidx.core.content.ContextCompat
-import org.thebytearray.wireling.sdk.WireLingConstants
+import org.thebytearray.wireling.WireLingConstants
 
 val filter = IntentFilter(WireLingConstants.STATS_BROADCAST_ACTION)
 ContextCompat.registerReceiver(

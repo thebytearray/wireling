@@ -20,14 +20,14 @@
  along with WireLing. If not, see <https://www.gnu.org/licenses/>.
 */
 
-package org.thebytearray.wireling.sdk.data
+package org.thebytearray.wireling.data
 
 import com.wireguard.config.Config
 import com.wireguard.config.InetEndpoint
 import com.wireguard.config.InetNetwork
 import com.wireguard.config.Interface
 import com.wireguard.config.Peer
-import org.thebytearray.wireling.sdk.domain.TunnelConfig
+import org.thebytearray.wireling.domain.TunnelConfig
 
 internal object WireGuardConfigMapper {
     fun toWireGuardConfig(configuration: TunnelConfig, excludedApplicationPackages: List<String>): Config {

@@ -20,7 +20,7 @@
  along with WireLing. If not, see <https://www.gnu.org/licenses/>.
 */
 
-package org.thebytearray.wireling.sdk.domain
+package org.thebytearray.wireling.domain
 
 import java.io.Serializable
 import java.util.regex.Pattern

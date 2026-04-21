@@ -20,18 +20,23 @@
  along with WireLing. If not, see <https://www.gnu.org/licenses/>.
 */
 
-package org.thebytearray.wireling.sdk.platform
+package org.thebytearray.wireling.domain
 
-import android.content.Context
+/**
+ * Abstraction over the underlying WireGuard backend; implemented inside the library.
+ * Apps normally use [org.thebytearray.wireling.WireLingVpn] instead of this type.
+ */
+public interface VpnTunnelEngine {
+    /**
+     * Brings the tunnel up with [configuration].
+     *
+     * @param excludedApplicationPackages App package names to exclude from the VPN (split/exclude semantics depend on backend mapping).
+     */
+    public suspend fun connect(configuration: TunnelConfig, excludedApplicationPackages: List<String>)
 
-internal interface ServiceListener {
-    fun onStateBroadcast(
-        context: Context,
-        state: String,
-        duration: String,
-        downloadSpeed: String,
-        uploadSpeed: String,
-    )
+    /** Tears down the tunnel. */
+    public suspend fun disconnect()
 
-    fun onVpnDisconnected()
+    /** Whether the tunnel is currently considered active. */
+    public fun isTunnelUp(): Boolean
 }

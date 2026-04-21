@@ -7,7 +7,7 @@ plugins {
 
 android {
 
-    namespace = "org.thebytearray.wireling"
+    namespace = "org.thebytearray.wireling.sample"
     compileSdk {
         version = release(36) {
             minorApiLevel = 1

@@ -5,7 +5,7 @@
 [![GitHub release](https://img.shields.io/github/v/release/thebytearray/wireling)](https://github.com/thebytearray/wireling/releases)
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
-WireLing is an Android library that wraps [wireguard-android](https://github.com/WireGuard/wireguard-android) with a small public API (`WireLingVpn`, `TunnelConfig`, foreground notifications, and stats broadcasts). Kotlin sources live under **`org.thebytearray.wireling.sdk`**. This project continues **WGAndroidLib** under the WireLing name and coordinates.
+WireLing is an Android library that wraps [wireguard-android](https://github.com/WireGuard/wireguard-android) with a small public API (`WireLingVpn`, `TunnelConfig`, foreground notifications, and stats broadcasts). Kotlin sources live under **`org.thebytearray.wireling`**. This project continues **WGAndroidLib** under the WireLing name and coordinates.
 
 The **`app`** module is a sample you can run to enter a WireGuard-style tunnel (interface, keys, peer, endpoint) and connect.
 
@@ -63,7 +63,7 @@ dependencies {
 
 | Module | Android `namespace` | Kotlin packages |
 |--------|---------------------|-----------------|
-| `wireling` | `org.thebytearray.wireling.sdk` | `org.thebytearray.wireling.sdk` (and internal subpackages) |
+| `wireling` | `org.thebytearray.wireling` | `org.thebytearray.wireling` (and internal subpackages) |
 | `app` | `org.thebytearray.wireling` | Sample: `org.thebytearray.wireling.sample` |
 
 ## License

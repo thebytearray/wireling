@@ -20,16 +20,18 @@
  along with WireLing. If not, see <https://www.gnu.org/licenses/>.
 */
 
-package org.thebytearray.wireling.sdk.data
+package org.thebytearray.wireling.platform
 
-import com.wireguard.android.backend.Tunnel
+import android.content.Context
 
-internal class WgTunnel : Tunnel {
-    override fun getName(): String = WIRELING_SESSION_NAME
+internal interface ServiceListener {
+    fun onStateBroadcast(
+        context: Context,
+        state: String,
+        duration: String,
+        downloadSpeed: String,
+        uploadSpeed: String,
+    )
 
-    override fun onStateChange(newState: Tunnel.State) {}
-
-    internal companion object {
-        const val WIRELING_SESSION_NAME: String = "WireLing Tunnel"
-    }
+    fun onVpnDisconnected()
 }

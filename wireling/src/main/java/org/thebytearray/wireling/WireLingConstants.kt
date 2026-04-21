@@ -20,9 +20,9 @@
  along with WireLing. If not, see <https://www.gnu.org/licenses/>.
 */
 
-package org.thebytearray.wireling.sdk
+package org.thebytearray.wireling
 
-import org.thebytearray.wireling.sdk.domain.TunnelState
+import org.thebytearray.wireling.domain.TunnelState
 
 /**
  * Keys and defaults for connection stats broadcasts sent while the VPN runs.
